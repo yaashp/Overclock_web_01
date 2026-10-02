@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Impact Feed | NEXORA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="feed.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body class="fd-body">
+<div class="nx-wrap fd-layout">
+
+  <!-- LEFT: feed menu (no Home item by design) -->
+  <aside class="fd-left" aria-label="Feed menu"><nav class="fd-menu" id="fd-menu">
+    <h4>Feed</h4>
+    <button data-view="foryou">For You</button>
+    <button data-view="following">Following</button>
+    <button data-view="saved">Saved</button>
+    <h4>Content</h4>
+    <button data-type="impact">Impact Updates</button>
+    <button data-type="fundraiser">Fundraisers</button>
+    <button data-type="volunteer">Volunteer</button>
+    <button data-type="event">Events</button>
+    <button data-type="completed">Completed</button>
+    <h4>Causes</h4>
+    <button data-cause="Education">Education</button>
+    <button data-cause="Healthcare">Healthcare</button>
+    <button data-cause="Environment">Environment</button>
+    <button data-cause="Animal Welfare">Animal Welfare</button>
+    <button data-cause="Food & Hunger">Food &amp; Hunger</button>
+    <button data-cause="Women & Children">Women &amp; Children</button>
+    <button data-cause="Water">Water</button>
+  </nav></aside>
+
+  <!-- CENTER -->
+  <main class="fd-main" id="fd-main">
+    <header class="fd-head">
+      <h1>Impact Feed</h1>
+      <p>Discover the people, projects and progress behind meaningful change.</p>
+      <p class="fd-tagline">See the work. Feel the impact. Be part of it.</p>
+      <div class="fd-search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input id="fd-search" type="search" placeholder="Search NGOs, campaigns, causes or impact stories..." aria-label="Search the feed"></div>
+      <div class="fd-tabs" id="fd-tabs" role="tablist">
+        <button role="tab" data-view="foryou">For You</button><button role="tab" data-view="following">Following</button><button role="tab" data-view="latest">Latest</button><button role="tab" data-view="saved" class="fd-tab-saved">Saved</button>
+      </div>
+      <div class="fd-chips" id="fd-chips">
+        <button data-type="all">All</button><button data-type="impact">Impact</button><button data-type="fundraiser">Fundraisers</button><button data-type="volunteer">Volunteer</button><button data-type="event">Events</button><button data-type="completed">Completed</button>
+      </div>
+      <div class="fd-filters">
+        <select id="fd-cause" aria-label="Cause"><option value="all">All causes</option></select>
+        <select id="fd-loc" aria-label="Location"><option value="all">All locations</option></select>
+        <select id="fd-sort" aria-label="Sort"><option value="default">Recommended</option><option value="latest">Latest</option><option value="liked">Most Liked</option></select>
+        <label class="fd-check"><input type="checkbox" id="fd-verified"> Verified NGOs</label>
+      </div>
+      <p class="fd-count" id="fd-count" aria-live="polite"></p>
+    </header>
+    <section id="fd-list" class="fd-list" aria-label="Impact posts"></section>
+  </main>
+
+  <!-- RIGHT -->
+  <aside class="fd-right" aria-label="Trending and urgent">
+    <section class="fd-box"><h3>Trending Causes</h3><div id="fd-trending" class="fd-trend"></div></section>
+    <section class="fd-box"><h3>Urgent Campaigns</h3><div id="fd-urgent"></div></section>
+    <section class="fd-box fd-stats"><h3>NEXORA Impact <em>Demo statistics</em></h3>
+      <div><b>12,480</b><span>People Impacted</span></div><div><b>₹28.4L</b><span>Contributions</span></div><div><b>3,240</b><span>Volunteer Hours</span></div></section>
+  </aside>
+</div>
+
+<div class="fd-modal" id="fd-modal" hidden><div class="fd-backdrop" data-close></div><div class="fd-dialog" role="dialog" aria-modal="true" aria-labelledby="fd-mt"><button class="fd-x" data-close aria-label="Close">&times;</button><div id="fd-mbody"></div></div></div>
+<div class="fd-toast" id="fd-toast" role="status" aria-live="polite" hidden></div>
+<script src="shell.js"></script>
+<script src="feed.js"></script>
+</body>
+</html>

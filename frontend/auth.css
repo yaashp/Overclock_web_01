@@ -1,0 +1,142 @@
+/* NEXORA auth pages: flat, standard layout. Independent of theme.css. */
+:root {
+  --bg: #F3F4F6;
+  --card: #FFFFFF;
+  --text: #111827;
+  --muted: #6B7280;
+  --border: #D1D5DB;
+  --primary: #285943;
+  --primary-hover: #1E4534;
+  --error: #DC2626;
+  --success: #166534;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* ---------- Login layout ---------- */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+.auth-brand { font-size: 22px; font-weight: 700; letter-spacing: .04em; color: var(--primary); margin-bottom: 20px; text-decoration: none; }
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 32px;
+}
+.auth-card h1 { font-size: 22px; margin: 0 0 4px; font-weight: 600; }
+.auth-sub { margin: 0 0 24px; color: var(--muted); font-size: 14px; }
+
+/* Role tabs */
+.role-tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+.role-tab {
+  flex: 1;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: 10px 8px;
+  font: inherit;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+}
+.role-tab:hover { color: var(--text); }
+.role-tab[aria-selected="true"] { color: var(--primary); border-bottom-color: var(--primary); font-weight: 600; }
+
+/* Fields */
+.field { margin-bottom: 16px; }
+.field label { display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; }
+.field input {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  font: inherit;
+  color: var(--text);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.field input:focus { outline: 2px solid var(--primary); outline-offset: 0; border-color: var(--primary); }
+.field.has-error input { border-color: var(--error); }
+.field.has-error input:focus { outline-color: var(--error); }
+.error-text { display: none; margin: 6px 0 0; color: var(--error); font-size: 13px; }
+.field.has-error .error-text, .form-error.show { display: block; }
+.form-error { display: none; margin: 0 0 16px; color: var(--error); font-size: 14px; }
+
+.pw-wrap { position: relative; }
+.pw-wrap input { padding-right: 44px; }
+.pw-toggle {
+  position: absolute; top: 0; right: 0; width: 42px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  background: none; border: 0; color: var(--muted); cursor: pointer;
+}
+.pw-toggle:hover { color: var(--text); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; height: 42px; padding: 0 16px;
+  font: inherit; font-weight: 600;
+  border-radius: 6px; border: 1px solid transparent; cursor: pointer;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: var(--primary-hover); }
+.btn:disabled { opacity: .65; cursor: not-allowed; }
+.link-btn { background: none; border: 0; padding: 0; font: inherit; color: var(--primary); cursor: pointer; text-decoration: underline; }
+.link-btn:disabled { color: var(--muted); cursor: not-allowed; text-decoration: none; }
+.step-actions { margin-top: 16px; text-align: center; font-size: 14px; color: var(--muted); }
+.step-actions > * + * { margin-left: 12px; }
+
+/* 6-digit code input */
+.code-input { letter-spacing: .5em; text-align: center; font-size: 20px; font-weight: 600; }
+
+/* Spinner */
+.spinner {
+  width: 16px; height: 16px; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.4); border-top-color: #fff;
+  animation: spin .7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.demo-note { margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
+.demo-note code { background: var(--bg); padding: 1px 5px; border-radius: 4px; }
+.hidden { display: none !important; }
+
+/* Toast */
+.toast {
+  position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+  background: #111827; color: #fff; padding: 10px 16px; border-radius: 6px;
+  font-size: 14px; z-index: 100; max-width: calc(100% - 32px);
+}
+
+/* ---------- Dashboards ---------- */
+.dash-bar { background: #fff; border-bottom: 1px solid var(--border); }
+.dash-bar-in { max-width: 960px; margin: 0 auto; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.dash-bar .auth-brand { margin: 0; font-size: 18px; }
+.dash-user { display: flex; align-items: center; gap: 14px; font-size: 14px; color: var(--muted); }
+.btn-outline { width: auto; height: 36px; background: #fff; color: var(--text); border-color: var(--border); }
+.btn-outline:hover { background: var(--bg); }
+.dash-main { max-width: 960px; margin: 0 auto; padding: 32px 16px; }
+.dash-main h1 { font-size: 24px; margin: 0 0 4px; }
+.dash-main > p { margin: 0 0 24px; color: var(--muted); }
+.dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.dash-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+.dash-card h2 { font-size: 15px; margin: 0 0 6px; }
+.dash-card p { margin: 0; color: var(--muted); font-size: 14px; }
+.dash-note { margin-top: 24px; font-size: 13px; color: var(--muted); }
+.hidden{display:none!important}

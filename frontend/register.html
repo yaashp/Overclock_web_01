@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create account | NEXORA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="auth.css"><link rel="stylesheet" href="portal.css">
+<style>
+.rg-tabs{display:flex;gap:8px;margin:0 0 18px}.rg-tabs button{flex:1;padding:10px;border:1px solid var(--border);background:#fff;border-radius:8px;font:inherit;font-weight:600;cursor:pointer;color:var(--muted)}
+.rg-tabs button[aria-selected="true"]{border-color:var(--primary);color:var(--primary);background:#EEF4EF}
+.rg-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.rg-grid .w{grid-column:1/-1}
+.rg-h{margin:18px 0 8px;font-size:15px}.rg-note{font-size:13px;color:var(--muted)}
+.lg-card{max-height:none}@media(max-width:640px){.rg-grid{grid-template-columns:1fr}}
+.field textarea{width:100%;font:inherit;padding:10px;border:1px solid var(--border);border-radius:6px}
+</style></head>
+<body class="login-body"><main class="lg">
+<section class="lg-hero"><a class="lg-logo" href="index.html">NEXORA</a>
+<h2>Every NGO verified. Every rupee traceable.</h2><p>Donors join instantly. NGO organisers are reviewed by a NEXORA admin before their account becomes active.</p></section>
+<section class="lg-card">
+<h1>Create account</h1><p class="auth-sub">Already registered? <a href="login.html">Sign in</a> · <a href="index.html">Homepage</a></p>
+<div class="rg-tabs" role="tablist"><button type="button" role="tab" id="t-user" aria-selected="true">User</button><button type="button" role="tab" id="t-ngo" aria-selected="false">NGO Organizer</button></div>
+<form id="rf" novalidate>
+<p class="form-error" id="ferr" role="alert"></p>
+<h3 class="rg-h" id="h-org">Account information</h3>
+<div class="rg-grid">
+<div class="field w"><label for="name">Full name</label><input id="name" autocomplete="name"></div>
+<div class="field"><label for="email">Email</label><input type="email" id="email" autocomplete="email"></div>
+<div class="field"><label for="phone">Contact number</label><input id="phone" type="tel" autocomplete="tel"></div>
+<div class="field"><label for="pw">Password</label><input type="password" id="pw" autocomplete="new-password"></div>
+<div class="field"><label for="pw2">Confirm password</label><input type="password" id="pw2" autocomplete="new-password"></div>
+<p class="rg-note w">At least 8 characters with upper-case, lower-case and a number.</p>
+</div>
+<div id="ngo-part" hidden>
+<h3 class="rg-h">NGO information</h3>
+<div class="rg-grid">
+<div class="field w"><label for="ngo_name">NGO name</label><input id="ngo_name"></div>
+<div class="field w"><label for="description">NGO description</label><textarea id="description" rows="3"></textarea></div>
+<div class="field"><label for="location">Location</label><input id="location"></div>
+<div class="field"><label for="cause">Cause</label><input id="cause"></div>
+<div class="field w"><label for="website">Website (optional)</label><input id="website" type="url" placeholder="https://"></div>
+<div class="field w"><label for="ngo_darpan_id">NGO Darpan ID</label><input id="ngo_darpan_id"></div>
+<div class="field"><label for="registration_12a">12A registration no.</label><input id="registration_12a"></div>
+<div class="field"><label for="registration_80g">80G registration no.</label><input id="registration_80g"></div>
+<div class="field w"><label for="profile_image">NGO profile image (JPG/PNG/WEBP, max 2 MB)</label><input id="profile_image" type="file" accept="image/png,image/jpeg,image/webp"></div>
+</div>
+<p class="rg-note">After you register, an admin reviews your details. Your organizer account stays <b>Pending</b> until approved.</p>
+</div>
+<button type="submit" class="btn btn-primary" id="rb" style="margin-top:16px">Create account</button>
+</form></section></main><div id="toast" class="hidden"></div>
+<script src="api.js"></script><script src="register.js"></script></body></html>

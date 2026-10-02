@@ -1,0 +1,968 @@
+{
+  "info": {
+    "name": "NEXORA API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Run folders top to bottom. Start the server first: uvicorn app.main:app --reload"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000"
+    },
+    {
+      "key": "admin_token",
+      "value": ""
+    },
+    {
+      "key": "org_token",
+      "value": ""
+    },
+    {
+      "key": "user_token",
+      "value": ""
+    },
+    {
+      "key": "organizer_id",
+      "value": "1"
+    },
+    {
+      "key": "ngo_id",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Auth",
+      "item": [
+        {
+          "name": "Login ADMIN",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@nexora.demo\",\n  \"password\": \"Admin@123\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const j = pm.response.json();",
+                  "pm.collectionVariables.set('admin_token', j.access_token);",
+                  "pm.test('200/201', () => pm.expect(pm.response.code).to.be.oneOf([200,201]));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Login organizer (Priya - PENDING)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"priya@example.com\",\n  \"password\": \"Demo@123\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const j = pm.response.json();",
+                  "pm.collectionVariables.set('org_token', j.access_token);",
+                  "pm.test('200/201', () => pm.expect(pm.response.code).to.be.oneOf([200,201]));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Register USER",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/register/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register",
+                "user"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"testuser@example.com\",\n  \"password\": \"Strong@123\",\n  \"confirm_password\": \"Strong@123\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const j = pm.response.json();",
+                  "pm.collectionVariables.set('user_token', j.access_token);",
+                  "pm.test('200/201', () => pm.expect(pm.response.code).to.be.oneOf([200,201]));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Register NGO organizer (multipart; optional profile_image file)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/auth/register/ngo",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register",
+                "ngo"
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Meera Nair",
+                  "type": "text"
+                },
+                {
+                  "key": "email",
+                  "value": "meera@example.com",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "Strong@123",
+                  "type": "text"
+                },
+                {
+                  "key": "confirm_password",
+                  "value": "Strong@123",
+                  "type": "text"
+                },
+                {
+                  "key": "phone",
+                  "value": "9000000009",
+                  "type": "text"
+                },
+                {
+                  "key": "ngo_name",
+                  "value": "Sunrise Care Trust",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "We support elderly people in Kochi.",
+                  "type": "text"
+                },
+                {
+                  "key": "location",
+                  "value": "Kochi, Kerala",
+                  "type": "text"
+                },
+                {
+                  "key": "cause",
+                  "value": "Elderly Care",
+                  "type": "text"
+                },
+                {
+                  "key": "website",
+                  "value": "https://sunrise.example",
+                  "type": "text"
+                },
+                {
+                  "key": "ngo_darpan_id",
+                  "value": "KL/2026/0200001",
+                  "type": "text"
+                },
+                {
+                  "key": "registration_12a",
+                  "value": "AAATS1111A12A",
+                  "type": "text"
+                },
+                {
+                  "key": "registration_80g",
+                  "value": "AAATS1111A80G",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{org_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/me",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "me"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Blocked cases (expect 403)",
+      "item": [
+        {
+          "name": "PENDING organizer -> campaigns",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{org_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/ngo/campaigns",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "ngo",
+                "campaigns"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('403', () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "USER -> admin stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/stats",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "stats"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('403', () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Organizer -> admin list",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{org_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/organizers",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "organizers"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('403', () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Own status (allowed for any organizer)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{org_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/ngo/me",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "ngo",
+                "me"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Admin: organizer management",
+      "item": [
+        {
+          "name": "Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/stats",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "stats"
+              ]
+            }
+          }
+        },
+        {
+          "name": "List all",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/organizers",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "organizers"
+              ]
+            }
+          }
+        },
+        {
+          "name": "List pending",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/organizers/pending",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "organizers",
+                "pending"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const l = pm.response.json(); if (l.length) pm.collectionVariables.set('organizer_id', l[0].user_id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "List active",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/organizers/active",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "organizers",
+                "active"
+              ]
+            }
+          }
+        },
+        {
+          "name": "List rejected",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/organizers/rejected",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "organizers",
+                "rejected"
+              ]
+            }
+          }
+        },
+        {
+          "name": "List suspended",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/organizers/suspended",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "organizers",
+                "suspended"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Detail + history + available_actions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/organizers/{{organizer_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "organizers",
+                "{{organizer_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Approve (PENDING->ACTIVE)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/organizers/{{organizer_id}}/approve",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "organizers",
+                "{{organizer_id}}",
+                "approve"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"NGO information reviewed and approved.\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Suspend (ACTIVE->SUSPENDED)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/organizers/{{organizer_id}}/suspend",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "organizers",
+                "{{organizer_id}}",
+                "suspend"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Account temporarily suspended for verification review.\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Reactivate (SUSPENDED->ACTIVE)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/organizers/{{organizer_id}}/reactivate",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "organizers",
+                "{{organizer_id}}",
+                "reactivate"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Review complete.\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Reject (PENDING->REJECTED; use another pending organizer)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/organizers/{{organizer_id}}/reject",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "organizers",
+                "{{organizer_id}}",
+                "reject"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"NGO registration information requires correction.\"\n}"
+            }
+          }
+        },
+        {
+          "name": "All status history",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/history",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "history"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Organizer after approval",
+      "item": [
+        {
+          "name": "Create campaign (needs ACTIVE)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{org_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/ngo/campaigns",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "ngo",
+                "campaigns"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Clean Beach Drive\",\n  \"description\": \"Weekend beach clean-up.\",\n  \"goal_amount\": 50000\n}"
+            }
+          }
+        },
+        {
+          "name": "List campaigns",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{org_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/ngo/campaigns",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "ngo",
+                "campaigns"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{org_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/ngo/profile",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "ngo",
+                "profile"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Updated description of our work.\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. NGO verification (independent)",
+      "item": [
+        {
+          "name": "List NGOs",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/ngos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "ngos"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const l = pm.response.json(); if (l.length) pm.collectionVariables.set('ngo_id', l[0].id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "List verified NGOs",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/ngos/verified",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "ngos",
+                "verified"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Verify NGO",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/ngos/{{ngo_id}}/verify",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "ngos",
+                "{{ngo_id}}",
+                "verify"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Reject NGO verification",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/ngos/{{ngo_id}}/reject",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "ngos",
+                "{{ngo_id}}",
+                "reject"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Registration numbers could not be matched.\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Public NGO list (no auth)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/ngos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "ngos"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

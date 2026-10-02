@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NEXORA | Transparent giving. Meaningful impact.</title>
+  <!-- Century Gothic is used if installed; Questrial is the closest free fallback -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="indiamap.css">
+</head>
+<body>
+<div class="ngo-app">
+
+  <main>
+    <section class="nx-hero" id="ngo-home"><div class="nx-wrap nx-hero-grid">
+      <div>
+        <h1>Give with confidence. See the impact you create.</h1>
+        <p class="lead">Discover verified NGOs, support meaningful campaigns, volunteer for causes you care about, and follow the journey of your contribution from donation to impact.</p>
+        <div class="nx-cta"><a class="ngo-btn ngo-btn-primary ngo-btn-lg" href="login.html">Log in</a><a class="ngo-btn ngo-btn-outline ngo-btn-lg" href="register.html">Sign up</a></div>
+      </div>
+      <div class="nx-flow" aria-label="Donor to impact">
+        <div class="nx-flow-row"><div><b>Donor</b><small>You give money or time</small></div></div><div class="nx-flow-arrow">↓</div>
+        <div class="nx-flow-row"><div><b>Verified NGO</b><small>Registration and compliance on record</small></div></div><div class="nx-flow-arrow">↓</div>
+        <div class="nx-flow-row"><div><b>Community</b><small>Work happens on the ground</small></div></div><div class="nx-flow-arrow">↓</div>
+        <div class="nx-flow-row"><div><b>Impact</b><small>Completion update published</small></div></div>
+      </div></div></section>
+
+    <section class="nx-sec"><div class="nx-wrap">
+      <h2>Your contribution deserves transparency.</h2>
+      <div class="nx-grid4">
+        <article class="nx-card"><h3>Verified NGOs</h3><p>Review NGO registration and compliance information before you contribute.</p></article>
+        <article class="nx-card"><h3>Track Every Campaign</h3><p>See fundraising progress, goals, donors and campaign updates.</p></article>
+        <article class="nx-card"><h3>Follow the Impact</h3><p>Discover what happened after a campaign ended and how resources were used.</p></article>
+        <article class="nx-card"><h3>Make a Difference</h3><p>Donate your money or contribute your time through volunteering.</p></article>
+      </div>
+      <section class="ngo-stats" aria-label="Platform numbers (demo data)"><div class="ngo-container ngo-stats-grid" id="ngo-stats-grid"></div></section>
+    </div></section>
+
+    <!-- ============ INDIA NGO MAP ============ -->
+    <section class="nx-sec" id="ngo-map"><div class="nx-wrap">
+      <div class="nxmap-head">
+        <div>
+          <h2>NGOs across India</h2>
+          <p class="nxmap-sub">Pick a state or hover over the map to see how many verified NGOs are working there. Darker green means more verified NGOs.</p>
+        </div>
+      </div>
+      <div class="nxmap">
+        <div class="nxmap-left">
+          <div class="nxmap-select-wrap">
+            <label for="nxmap-select">Select a State</label>
+            <select id="nxmap-select"></select>
+          </div>
+          <p class="nxmap-sub" style="margin-top:14px">Showing: <strong id="nxmap-region">All India</strong></p>
+          <div class="nxmap-stats" aria-live="polite">
+            <div class="nxmap-stat"><span class="nxmap-stat-l">Verified<br>NGOs</span><span class="nxmap-stat-v" id="nxmap-verified">0</span></div>
+            <div class="nxmap-stat"><span class="nxmap-stat-l">Active<br>campaigns</span><span class="nxmap-stat-v" id="nxmap-campaigns">0</span></div>
+            <div class="nxmap-stat"><span class="nxmap-stat-l">Pending<br>verification</span><span class="nxmap-stat-v" id="nxmap-pending">0</span></div>
+          </div>
+          <div class="nxmap-summary">
+            <h3>NGO Type Summary</h3>
+            <div class="nxmap-types" id="nxmap-types"></div>
+          </div>
+          <p class="nxmap-note">Demo data. It will be replaced with live registry data.</p>
+          <a class="nxmap-link" href="login.html">Log in to browse campaigns →</a>
+        </div>
+
+        <div class="nxmap-right">
+          <div class="nxmap-toggle"><div class="nxmap-toggle-in" role="group" aria-label="Map or table view">
+            <button type="button" id="nxmap-show-map" aria-pressed="true">Show Map</button>
+            <button type="button" id="nxmap-show-table" aria-pressed="false">Show Table</button>
+          </div></div>
+          <div class="nxmap-stage" id="nxmap-stage">
+            <svg class="nxmap-svg" id="nxmap-svg" role="group" aria-label="Map of India showing verified NGOs by state"></svg>
+            <div class="nxmap-tip" id="nxmap-tip" hidden></div>
+            <div class="nxmap-legend" aria-hidden="true">
+              <span>Fewer</span>
+              <span class="sw" style="background:#EFE6D5"></span><span class="sw" style="background:#DCE6D2"></span><span class="sw" style="background:#BFD0B3"></span><span class="sw" style="background:#9DB790"></span><span class="sw" style="background:#78966F"></span><span class="sw" style="background:#4F7A5E"></span><span class="sw" style="background:#285943"></span>
+              <span>More</span>
+              <button type="button" class="nxmap-reset" id="nxmap-reset">Reset to All India</button>
+            </div>
+          </div>
+          <div class="nxmap-tablewrap" id="nxmap-tablewrap" hidden>
+            <table class="nxmap-table">
+              <thead><tr><th scope="col">State / UT</th><th scope="col">Verified</th><th scope="col">Pending</th><th scope="col">Campaigns</th></tr></thead>
+              <tbody id="nxmap-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="nx-sec" id="ngo-how"><div class="nx-wrap">
+      <h2>Know before you give.</h2>
+      <ol class="nx-steps" style="list-style:none;padding:0">
+        <li class="nx-step"><i>01</i><h3>Verify</h3><p>Check NGO registration and compliance information.</p></li>
+        <li class="nx-step"><i>02</i><h3>Discover</h3><p>Explore campaigns and understand their goals.</p></li>
+        <li class="nx-step"><i>03</i><h3>Contribute</h3><p>Donate or volunteer for a campaign.</p></li>
+        <li class="nx-step"><i>04</i><h3>Track Impact</h3><p>Receive updates showing how the campaign progressed and what was achieved.</p></li>
+      </ol></div></section>
+
+    <section class="nx-sec" id="ngo-about"><div class="nx-wrap"><div class="nx-loop">
+      <h2>From contribution to impact.</h2>
+      <p>NEXORA closes the transparency loop: NGOs publish completion updates after a campaign ends, so you can see what your support achieved.</p>
+      <div class="nx-loop-row"><span>Donate</span><em>→</em><span>Campaign</span><em>→</em><span>Action</span><em>→</em><span>Completion</span><em>→</em><span>Impact update</span></div>
+      <div class="nx-loop-ex"><div><b>₹2.5L raised</b><br>Campaign fully funded</div><div><b>500 school kits</b><br>Distributed to children</div><div><b>Impact update</b><br>Published for every donor</div></div>
+    </div></div></section>
+  </main>
+
+  <footer class="ngo-footer" hidden>
+    <div class="ngo-container ngo-footer-inner">
+      <strong>NEXORA</strong>
+      <span>Give with confidence. See your impact.</span>
+    </div>
+  </footer>
+</div>
+
+<script src="shell.js"></script>
+<script src="script.js"></script>
+<script src="indiamap-shapes.js"></script>
+<script src="indiamap.js"></script>
+</body>
+</html>

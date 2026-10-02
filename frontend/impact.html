@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Impact | NEXORA</title>
+<link rel="stylesheet" href="impact.css"><link rel="stylesheet" href="theme.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
+<link rel="stylesheet" href="app.css">
+</head>
+<body class="impact-body">
+<div class="impact-app" id="impact-app">
+
+  <header class="impact-topbar">
+    <button class="impact-menu-btn" id="impact-menu-btn" aria-label="Toggle navigation" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <span class="impact-brand-name">NEXORA</span>
+    <div class="impact-topbar-actions">
+      <a href="feed.html" class="impact-home-btn">&#8592; Impact Feed</a>
+      <button class="impact-bell" data-impact-target="impact-notifications" aria-label="Notifications"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 003.4 0"/></svg><span class="impact-bell-count" id="impact-bell-count">0</span></button>
+    </div>
+  </header>
+
+  <aside class="impact-nav" id="impact-nav">
+    <div class="impact-brand">
+      <span class="impact-brand-name">NEXORA</span>
+      <p class="impact-brand-tag">Give with confidence. See your impact.</p>
+    </div>
+    <nav class="impact-nav-list">
+      <a href="feed.html" class="impact-nav-link">← Impact Feed</a>
+      <a href="#impact-dashboard" class="impact-nav-link">My Impact</a>
+      <a href="#impact-timeline" class="impact-nav-link">Timeline</a>
+      <a href="#impact-report" class="impact-nav-link">Impact Report</a>
+      <a href="#impact-utilization" class="impact-nav-link">Fund Utilization</a>
+      <a href="#impact-evidence" class="impact-nav-link">Evidence</a>
+      <a href="#impact-post" class="impact-nav-link">Completion Post</a>
+      <a href="#impact-ai" class="impact-nav-link">AI Summary</a>
+      <a href="#impact-notifications" class="impact-nav-link">Notifications</a>
+      <a href="#impact-transparency" class="impact-nav-link">Transparency</a>
+    </nav>
+  </aside>
+
+  <main class="impact-main">
+
+    <section class="impact-dashboard" id="impact-dashboard">
+      <h1 class="impact-title">My Impact</h1>
+      <p class="impact-subtitle">See what happened after you donated.</p>
+      <div class="impact-stats" id="impact-stats"></div>
+
+      <div class="impact-panel">
+        <div class="impact-panel-head">
+          <h2 class="impact-h2">Your Giving Activity</h2>
+          <div class="impact-filters" id="impact-filters" role="tablist">
+            <button class="impact-filter impact-filter-active" data-impact-filter="all">All contributions</button>
+            <button class="impact-filter" data-impact-filter="active">Active</button>
+            <button class="impact-filter" data-impact-filter="completed">Completed</button>
+            <button class="impact-filter" data-impact-filter="report">Impact reports</button>
+          </div>
+        </div>
+        <div class="impact-contrib-list" id="impact-contrib-list"></div>
+      </div>
+    </section>
+
+    <section class="impact-panel" id="impact-timeline">
+      <h2 class="impact-h2">Impact Timeline</h2>
+      <p class="impact-muted">500 School Kits for Children</p>
+      <ol class="impact-timeline">
+        <li class="impact-step"><span class="impact-step-dot">✓</span><div><strong>Contribution made</strong><span class="impact-step-date">10 Sept 2026</span></div></li>
+        <li class="impact-step"><span class="impact-step-dot">✓</span><div><strong>Campaign reached target</strong><span class="impact-step-date">17 Sept 2026</span></div></li>
+        <li class="impact-step"><span class="impact-step-dot">✓</span><div><strong>Campaign completed</strong><span class="impact-step-date">22 Sept 2026</span></div></li>
+        <li class="impact-step"><span class="impact-step-dot">✓</span><div><strong>Impact report published</strong><span class="impact-step-date">25 Sept 2026</span></div></li>
+      </ol>
+    </section>
+
+    <section class="impact-panel impact-report" id="impact-report">
+      <div class="impact-report-head">
+        <div>
+          <p class="impact-eyebrow">Campaign Completed</p>
+          <h2 class="impact-h2">500 School Kits for Children</h2>
+          <p class="impact-muted">Udaan Education Foundation</p>
+        </div>
+        <span class="impact-badge impact-badge-done">COMPLETED</span>
+      </div>
+      <dl class="impact-facts">
+        <div class="impact-fact"><dt>Funds Raised</dt><dd>₹2,50,000</dd></div>
+        <div class="impact-fact"><dt>Funds Utilized</dt><dd>₹2,37,500</dd></div>
+        <div class="impact-fact"><dt>Beneficiaries</dt><dd>500 children</dd></div>
+        <div class="impact-fact"><dt>Location</dt><dd>Mumbai, Maharashtra</dd></div>
+        <div class="impact-fact"><dt>Duration</dt><dd>10 Sept – 22 Sept 2026</dd></div>
+      </dl>
+    </section>
+
+    <section class="impact-panel" id="impact-utilization">
+      <h2 class="impact-h2">How the campaign funds were used</h2>
+      <div class="impact-util">
+        <div class="impact-donut" id="impact-donut" role="img" aria-label="Fund utilization donut chart">
+          <div class="impact-donut-hole"><strong>₹2,37,500</strong><span>utilized</span></div>
+        </div>
+        <div class="impact-bars" id="impact-bars"></div>
+      </div>
+    </section>
+
+    <section class="impact-panel" id="impact-evidence">
+      <div class="impact-panel-head">
+        <h2 class="impact-h2">Impact Evidence</h2>
+        <button class="impact-link-btn" id="impact-evidence-toggle" aria-expanded="true">Collapse</button>
+      </div>
+      <div class="impact-evidence-grid" id="impact-evidence-grid"></div>
+      <p class="impact-disclaimer">Evidence shown is NGO-submitted campaign data for demonstration purposes.</p>
+    </section>
+
+    <section class="impact-post" id="impact-post">
+      <div class="impact-post-head">
+        <span class="impact-avatar">UE</span>
+        <div>
+          <strong>Udaan Education Foundation</strong> <span class="impact-verified" title="Identity details submitted by NGO">✓ Verified badge</span>
+          <p class="impact-muted">25 Sept 2026</p>
+        </div>
+      </div>
+      <h3 class="impact-post-title">Campaign completed</h3>
+      <p>500 school kits have been distributed to students across selected schools.</p>
+      <div class="impact-post-photos" id="impact-post-photos"></div>
+      <div class="impact-post-stats">
+        <span>Funds utilized: <strong>₹2,37,500</strong></span>
+        <span>Beneficiaries: <strong>500 children</strong></span>
+      </div>
+      <div class="impact-post-actions">
+        <button class="impact-btn impact-btn-ghost" id="impact-like-btn" aria-pressed="false">Like <span id="impact-like-count">128</span></button>
+        <button class="impact-btn impact-btn-ghost" id="impact-share-btn">Share</button>
+        <button class="impact-btn impact-btn-primary" data-impact-target="impact-report">View Full Report</button>
+      </div>
+    </section>
+
+    <section class="impact-panel impact-ai" id="impact-ai">
+      <h2 class="impact-h2">AI Impact Summary</h2>
+      <p>Based on the campaign data submitted by the NGO, this campaign supported 500 students through school kits and learning materials. The majority of campaign funds were directed toward educational supplies.</p>
+      <p class="impact-ai-label">AI-generated summary — based on NGO-submitted campaign data.</p>
+    </section>
+
+    <section class="impact-panel" id="impact-notifications">
+      <h2 class="impact-h2">Notifications</h2>
+      <div class="impact-notif-list" id="impact-notif-list"></div>
+    </section>
+
+    <section class="impact-panel" id="impact-transparency">
+      <h2 class="impact-h2">Transparency Snapshot</h2>
+      <ul class="impact-checklist">
+        <li>NGO identity submitted</li>
+        <li>Campaign goal published</li>
+        <li>Fund utilization reported</li>
+        <li>Completion update published</li>
+        <li>Evidence uploaded</li>
+      </ul>
+      <p class="impact-status"><span class="impact-status-dot"></span>Transparency trail complete</p>
+      <p class="impact-muted impact-small">Based on information submitted by the NGO. This is not a government verification.</p>
+    </section>
+
+  </main>
+  <div class="impact-toast" id="impact-toast" role="status" aria-live="polite"></div>
+</div>
+<script src="impact.js"></script><script src="shell.js"></script>
+</body>
+</html>

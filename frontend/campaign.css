@@ -1,0 +1,265 @@
+/* NEXORA — Module 2: NGO profile, campaign, donation. All classes prefixed campaign- */
+.campaign-page {
+  --campaign-green: #0f5a3a;
+  --campaign-green-2: #17784d;
+  --campaign-green-soft: #e6f2ea;
+  --campaign-green-line: #c8e4d3;
+  --campaign-ink: #1f2a26;
+  --campaign-muted: #5b6a63;
+  --campaign-bg: #f8faf8;
+  --campaign-white: #ffffff;
+  --campaign-danger: #b3261e;
+  --campaign-radius: 18px;
+  --campaign-shadow: 0 2px 4px rgba(15,60,40,.05), 0 10px 28px rgba(15,60,40,.07);
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--campaign-ink);
+  background: var(--campaign-bg);
+  min-height: 100vh;
+  line-height: 1.55;
+}
+.campaign-body { margin: 0; background: #f8faf8; }
+.campaign-page *, .campaign-page *::before, .campaign-page *::after { box-sizing: border-box; }
+.campaign-page h1, .campaign-page h2, .campaign-page h3, .campaign-page p, .campaign-page ul, .campaign-page ol, .campaign-page dl { margin: 0; padding: 0; }
+.campaign-page ul, .campaign-page ol { list-style: none; }
+.campaign-page button, .campaign-page input, .campaign-page textarea { font: inherit; color: inherit; }
+.campaign-page :focus-visible { outline: 3px solid var(--campaign-green-2); outline-offset: 2px; }
+
+.campaign-hidden { display: none !important; }
+
+/* top bar */
+.campaign-topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  padding: 14px 32px; background: var(--campaign-white); border-bottom: 1px solid var(--campaign-green-line);
+  position: sticky; top: 0; z-index: 20;
+}
+.campaign-brand { display: flex; align-items: center; gap: 12px; }
+.campaign-brand-mark {
+  width: 40px; height: 40px; border-radius: 12px; background: var(--campaign-green); color: #fff;
+  display: grid; place-items: center; font-weight: 800; font-size: 20px;
+}
+.campaign-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+.campaign-brand-text strong { font-size: 18px; letter-spacing: .08em; color: var(--campaign-green); }
+.campaign-brand-text small { font-size: 12px; color: var(--campaign-muted); }
+.campaign-tabs { display: flex; gap: 6px; background: var(--campaign-green-soft); padding: 4px; border-radius: 999px; }
+.campaign-tab {
+  border: 0; background: transparent; padding: 8px 16px; border-radius: 999px; cursor: pointer;
+  font-weight: 600; font-size: 14px; color: var(--campaign-muted); transition: background .2s, color .2s;
+}
+.campaign-tab:hover { color: var(--campaign-green); }
+.campaign-tab-active { background: var(--campaign-white); color: var(--campaign-green); box-shadow: 0 1px 4px rgba(15,60,40,.12); }
+
+.campaign-main { max-width: 1160px; margin: 0 auto; padding: 28px 24px 48px; }
+.campaign-footer { text-align: center; font-size: 13px; color: var(--campaign-muted); padding: 24px 16px 36px; }
+
+/* views */
+.campaign-view { display: none; }
+.campaign-view-active { display: block; animation: campaign-fade .3s ease; }
+@keyframes campaign-fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* cards & text */
+.campaign-card {
+  background: var(--campaign-white); border-radius: var(--campaign-radius); box-shadow: var(--campaign-shadow);
+  padding: 24px; border: 1px solid rgba(15,90,58,.07); margin-bottom: 20px;
+}
+.campaign-card-soft { background: var(--campaign-green-soft); border-color: var(--campaign-green-line); }
+.campaign-h1 { font-size: 28px; line-height: 1.2; font-weight: 800; letter-spacing: -.01em; }
+.campaign-h2 { font-size: 20px; font-weight: 700; margin-bottom: 12px; letter-spacing: -.01em; }
+.campaign-h3 { font-size: 15px; font-weight: 700; color: var(--campaign-green); margin: 14px 0 4px; }
+.campaign-text { color: var(--campaign-ink); max-width: 68ch; }
+.campaign-card .campaign-text + .campaign-text { margin-top: 8px; }
+.campaign-meta-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0 12px; }
+.campaign-chip { background: var(--campaign-green-soft); color: var(--campaign-green); font-size: 13px; font-weight: 600; padding: 4px 12px; border-radius: 999px; }
+.campaign-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--campaign-green); color: #fff; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+.campaign-badge-tick { font-size: 11px; }
+.campaign-demo-note { display: inline-block; background: #fff6df; color: #7a5a00; border: 1px solid #f0dca3; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 8px; margin-bottom: 14px; }
+.campaign-note { margin-top: 18px; padding: 12px 14px; background: var(--campaign-green-soft); border-radius: 12px; font-size: 14px; color: var(--campaign-green); }
+.campaign-fine { font-size: 12px; color: var(--campaign-muted); text-align: center; margin-top: 10px; }
+
+/* buttons */
+.campaign-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
+  padding: 11px 22px; border-radius: 12px; font-weight: 700; font-size: 15px; border: 2px solid transparent;
+  transition: transform .15s, background .2s, box-shadow .2s;
+}
+.campaign-btn:active { transform: scale(.98); }
+.campaign-btn-primary { background: var(--campaign-green); color: #fff; box-shadow: 0 4px 12px rgba(15,90,58,.25); }
+.campaign-btn-primary:hover { background: var(--campaign-green-2); }
+.campaign-btn-ghost { background: var(--campaign-white); color: var(--campaign-green); border-color: var(--campaign-green-line); }
+.campaign-btn-ghost:hover { background: var(--campaign-green-soft); }
+.campaign-btn-following { background: var(--campaign-green-soft); border-color: var(--campaign-green); }
+.campaign-btn-block { width: 100%; margin-top: 10px; }
+.campaign-btn-lg { padding: 16px 22px; font-size: 17px; letter-spacing: .04em; }
+.campaign-back { background: none; border: 0; color: var(--campaign-green); font-weight: 700; cursor: pointer; padding: 4px 0; margin-bottom: 16px; font-size: 15px; }
+.campaign-back:hover { text-decoration: underline; }
+
+/* layout */
+.campaign-two-col { display: grid; grid-template-columns: minmax(0, 2fr) minmax(300px, 1fr); gap: 24px; align-items: start; }
+.campaign-sticky { position: sticky; top: 96px; }
+
+/* profile head */
+.campaign-profile-head { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.campaign-logo { width: 84px; height: 84px; border-radius: 22px; background: var(--campaign-green); color: #fff; display: grid; place-items: center; font-weight: 800; font-size: 28px; letter-spacing: .02em; flex: none; }
+.campaign-profile-id { flex: 1 1 260px; min-width: 0; }
+.campaign-profile-title { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.campaign-profile-actions { display: flex; gap: 10px; }
+
+/* stats */
+.campaign-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 20px; }
+.campaign-stat { background: var(--campaign-green); color: #fff; border-radius: var(--campaign-radius); padding: 20px; display: flex; flex-direction: column; gap: 4px; box-shadow: var(--campaign-shadow); }
+.campaign-stat-num { font-size: 28px; font-weight: 800; letter-spacing: -.02em; }
+.campaign-stat-label { font-size: 13px; opacity: .85; }
+
+/* verification list */
+.campaign-check-list { display: grid; gap: 10px; }
+.campaign-check-list li { display: flex; gap: 12px; align-items: center; padding: 10px 12px; background: var(--campaign-green-soft); border-radius: 12px; }
+.campaign-check-list strong { display: block; font-size: 15px; }
+.campaign-check-list em { font-style: normal; font-size: 13px; color: var(--campaign-muted); }
+.campaign-check { width: 26px; height: 26px; border-radius: 50%; background: var(--campaign-green); color: #fff; display: grid; place-items: center; font-size: 14px; font-weight: 700; flex: none; }
+
+/* impact cards */
+.campaign-impact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.campaign-impact-card { border: 1px solid var(--campaign-green-line); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 2px; font-size: 14px; color: var(--campaign-muted); }
+.campaign-impact-num { font-size: 26px; font-weight: 800; color: var(--campaign-green); }
+
+/* activity */
+.campaign-activity { display: grid; gap: 0; border-left: 2px solid var(--campaign-green-line); margin-left: 6px; }
+.campaign-activity li { position: relative; padding: 0 0 18px 18px; }
+.campaign-activity li::before { content: ""; position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--campaign-green); border: 2px solid #fff; }
+.campaign-activity time { font-size: 12px; color: var(--campaign-muted); display: block; }
+.campaign-activity strong { font-size: 15px; display: block; }
+.campaign-activity p { font-size: 14px; color: var(--campaign-muted); }
+
+/* progress */
+.campaign-progress { height: 10px; background: var(--campaign-green-line); border-radius: 999px; overflow: hidden; margin: 10px 0; }
+.campaign-progress-lg { height: 14px; }
+.campaign-progress-bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--campaign-green), var(--campaign-green-2)); border-radius: 999px; transition: width 1s cubic-bezier(.2,.8,.2,1); }
+
+/* campaign page */
+.campaign-hero-img { border-radius: var(--campaign-radius); overflow: hidden; margin-bottom: 20px; box-shadow: var(--campaign-shadow); }
+.campaign-hero-svg { display: block; width: 100%; height: auto; }
+.campaign-raised strong { font-size: 32px; font-weight: 800; color: var(--campaign-green); letter-spacing: -.02em; }
+.campaign-raised span { color: var(--campaign-muted); font-size: 14px; }
+.campaign-progress-pct { font-size: 14px; color: var(--campaign-muted); }
+.campaign-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+.campaign-facts div { background: var(--campaign-green-soft); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; }
+.campaign-facts strong { font-size: 22px; color: var(--campaign-green); }
+.campaign-facts span { font-size: 13px; color: var(--campaign-muted); }
+
+.campaign-alloc { display: grid; gap: 14px; }
+.campaign-alloc-head { display: flex; justify-content: space-between; font-size: 14px; font-weight: 600; }
+.campaign-alloc-head span:last-child { color: var(--campaign-green); }
+.campaign-promise { display: flex; gap: 16px; align-items: flex-start; }
+.campaign-promise .campaign-h2 { margin-bottom: 6px; }
+.campaign-promise-icon { font-size: 28px; }
+
+/* timeline */
+.campaign-timeline { display: grid; gap: 0; }
+.campaign-timeline li { display: flex; gap: 16px; position: relative; padding-bottom: 22px; }
+.campaign-timeline li:last-child { padding-bottom: 0; }
+.campaign-timeline li::before { content: ""; position: absolute; left: 15px; top: 34px; bottom: 2px; width: 2px; background: var(--campaign-green-line); }
+.campaign-timeline li:last-child::before { display: none; }
+.campaign-tl-dot { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; flex: none; border: 2px solid var(--campaign-green-line); background: #fff; color: var(--campaign-muted); }
+.campaign-tl-done .campaign-tl-dot { background: var(--campaign-green); border-color: var(--campaign-green); color: #fff; }
+.campaign-tl-done::before { background: var(--campaign-green) !important; }
+.campaign-timeline strong { display: block; }
+.campaign-timeline p { font-size: 14px; color: var(--campaign-muted); }
+.campaign-tl-todo strong { color: var(--campaign-muted); }
+
+.campaign-empty { text-align: center; padding: 48px 24px; }
+.campaign-empty .campaign-text { margin: 0 auto 18px; }
+
+/* receipt */
+.campaign-receipt { background: #fff; border: 2px dashed var(--campaign-green-line); border-radius: var(--campaign-radius); padding: 24px; box-shadow: var(--campaign-shadow); }
+.campaign-receipt-brand { text-align: center; font-weight: 800; letter-spacing: .14em; color: var(--campaign-green); font-size: 20px; }
+.campaign-receipt-title { text-align: center; color: var(--campaign-muted); font-size: 14px; margin-bottom: 16px; }
+.campaign-dl { display: grid; gap: 8px; }
+.campaign-dl div { display: flex; justify-content: space-between; gap: 16px; font-size: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--campaign-green-soft); }
+.campaign-dl dt { color: var(--campaign-muted); }
+.campaign-dl dd { margin: 0; font-weight: 600; text-align: right; word-break: break-word; }
+.campaign-receipt-note { font-size: 12px; color: var(--campaign-muted); margin: 12px 0; text-align: center; }
+.campaign-receipt .campaign-btn { width: 100%; margin-top: 8px; }
+
+/* modals */
+.campaign-overlay {
+  position: fixed; inset: 0; background: rgba(20,35,28,.55); display: flex; align-items: center; justify-content: center;
+  padding: 16px; z-index: 100; opacity: 0; visibility: hidden; transition: opacity .25s, visibility .25s;
+}
+.campaign-overlay-open { opacity: 1; visibility: visible; }
+.campaign-donation-modal, .campaign-volunteer-modal {
+  position: relative; background: #fff; width: 100%; max-width: 480px; max-height: calc(100vh - 32px); overflow-y: auto;
+  border-radius: 22px; padding: 28px 24px 24px; box-shadow: 0 24px 60px rgba(0,0,0,.25);
+  transform: translateY(16px) scale(.97); transition: transform .25s;
+}
+.campaign-overlay-open .campaign-donation-modal, .campaign-overlay-open .campaign-volunteer-modal { transform: none; }
+.campaign-close { position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: var(--campaign-green-soft); color: var(--campaign-green); font-size: 22px; cursor: pointer; line-height: 1; }
+.campaign-close:hover { background: var(--campaign-green-line); }
+.campaign-steps { display: flex; gap: 8px; margin: 12px 0 20px; }
+.campaign-step { flex: 1; text-align: center; font-size: 13px; font-weight: 600; padding: 8px 0; border-bottom: 3px solid var(--campaign-green-line); color: var(--campaign-muted); }
+.campaign-step-active { color: var(--campaign-green); border-color: var(--campaign-green); }
+.campaign-step-done { color: var(--campaign-green); border-color: var(--campaign-green-2); }
+.campaign-step-panel { display: none; }
+.campaign-step-panel-active { display: block; animation: campaign-fade .25s ease; }
+.campaign-amount-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+.campaign-amount-btn { padding: 14px 8px; border-radius: 12px; border: 2px solid var(--campaign-green-line); background: #fff; font-weight: 700; font-size: 16px; cursor: pointer; transition: all .15s; }
+.campaign-amount-btn:hover { border-color: var(--campaign-green-2); }
+.campaign-amount-selected { background: var(--campaign-green); border-color: var(--campaign-green); color: #fff; }
+.campaign-field { display: block; margin-bottom: 14px; }
+.campaign-field span { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--campaign-muted); }
+.campaign-input { width: 100%; padding: 12px 14px; border: 2px solid var(--campaign-green-line); border-radius: 12px; background: #fff; transition: border-color .15s; resize: vertical; }
+.campaign-input:focus { outline: none; border-color: var(--campaign-green); }
+.campaign-pay-list { display: grid; gap: 10px; margin: 12px 0; }
+.campaign-pay { display: flex; align-items: center; gap: 12px; padding: 14px; border: 2px solid var(--campaign-green-line); border-radius: 12px; cursor: pointer; font-weight: 600; }
+.campaign-pay:has(input:checked) { border-color: var(--campaign-green); background: var(--campaign-green-soft); }
+.campaign-pay input { accent-color: var(--campaign-green); width: 18px; height: 18px; }
+.campaign-summary { background: var(--campaign-green-soft); padding: 12px 14px; border-radius: 12px; font-size: 14px; color: var(--campaign-green); font-weight: 600; }
+.campaign-error { min-height: 20px; color: var(--campaign-danger); font-size: 13px; font-weight: 600; margin: 4px 0 8px; }
+.campaign-modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 8px; flex-wrap: wrap; }
+
+.campaign-loading { text-align: center; padding: 56px 0; }
+.campaign-spinner { width: 48px; height: 48px; border-radius: 50%; border: 5px solid var(--campaign-green-line); border-top-color: var(--campaign-green); margin: 0 auto 16px; animation: campaign-spin .8s linear infinite; }
+@keyframes campaign-spin { to { transform: rotate(360deg); } }
+.campaign-success { text-align: center; }
+.campaign-success .campaign-dl { text-align: left; margin: 14px 0; }
+.campaign-success-icon { width: 64px; height: 64px; border-radius: 50%; background: var(--campaign-green); color: #fff; font-size: 32px; display: grid; place-items: center; margin: 4px auto 14px; animation: campaign-pop .4s cubic-bezier(.2,1.4,.4,1); }
+@keyframes campaign-pop { from { transform: scale(0); } to { transform: scale(1); } }
+.campaign-success-line { color: var(--campaign-green); font-weight: 700; margin-bottom: 4px; }
+.campaign-success .campaign-text { margin: 0 auto 16px; }
+
+.campaign-toast { position: fixed; bottom: 24px; left: 50%; transform: translate(-50%, 20px); background: var(--campaign-ink); color: #fff; padding: 12px 20px; border-radius: 12px; font-size: 14px; opacity: 0; pointer-events: none; transition: all .3s; z-index: 200; }
+.campaign-toast-show { opacity: 1; transform: translate(-50%, 0); }
+
+/* responsive */
+@media (max-width: 900px) {
+  .campaign-two-col { grid-template-columns: 1fr; }
+  .campaign-sticky { position: static; }
+  .campaign-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  #campaign-view-campaign .campaign-col-side { order: -1; }
+}
+@media (max-width: 600px) {
+  .campaign-topbar { padding: 12px 16px; }
+  .campaign-main { padding: 20px 14px 36px; }
+  .campaign-tabs { width: 100%; justify-content: space-between; }
+  .campaign-tab { flex: 1; padding: 8px 6px; font-size: 13px; }
+  .campaign-h1 { font-size: 23px; }
+  .campaign-profile-actions { width: 100%; }
+  .campaign-profile-actions .campaign-btn { flex: 1; }
+  .campaign-impact-grid { grid-template-columns: 1fr; }
+  .campaign-card { padding: 18px; }
+  .campaign-overlay { align-items: flex-end; padding: 0; }
+  .campaign-donation-modal, .campaign-volunteer-modal { max-width: none; border-radius: 22px 22px 0 0; max-height: 92vh; }
+  .campaign-amount-grid { grid-template-columns: repeat(2, 1fr); }
+  .campaign-modal-actions .campaign-btn { flex: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .campaign-page *, .campaign-page *::before, .campaign-page *::after { animation: none !important; transition: none !important; }
+}
+
+
+.campaign-home-btn {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:10px 16px; border-radius:999px; text-decoration:none;
+  background:var(--campaign-green); color:#fff; font-weight:700; font-size:14px;
+  transition:transform .2s ease, filter .2s ease;
+}
+.campaign-home-btn:hover { filter:brightness(.95); transform:translateY(-1px); }
+@media (max-width:600px) { .campaign-topbar { padding:12px 16px; } .campaign-brand-text small { display:none; } }

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Campaigns | NEXORA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="theme.css"><link rel="stylesheet" href="app.css">
+</head>
+<body class="app-page"><div class="ngo-app"><main><div class="nx-wrap" style="padding-top:28px"><h1 style="margin:0">Campaigns</h1><p style="color:#6B6256">Find a campaign to support and open it for full details.</p></div>
+
+    <!-- ============ DISCOVERY FEED ============ -->
+    <section class="nx-sec ngo-explore" id="ngo-explore">
+      <div class="nx-wrap">
+        <h2>Campaigns making an impact</h2>
+
+        <!-- Filter bar -->
+        <div class="ngo-filters" id="ngo-filters">
+          <input class="ngo-input ngo-filter-search" type="search" id="ngo-search-input" placeholder="Search NGOs, campaigns or causes..." aria-label="Search NGOs">
+          <select class="ngo-input" id="ngo-location-filter" aria-label="Location">
+            <option value="all">All locations</option>
+          </select>
+          <select class="ngo-input" id="ngo-cause-filter" aria-label="Cause">
+            <option value="all">All causes</option>
+          </select>
+          <select class="ngo-input" id="ngo-urgency-filter" aria-label="Urgency">
+            <option value="all">Any urgency</option>
+            <option value="high">Urgent</option>
+            <option value="medium">Moderate</option>
+            <option value="low">Ongoing</option>
+          </select>
+          <select class="ngo-input" id="ngo-sort-select" aria-label="Sort">
+            <option value="newest">Newest first</option>
+            <option value="funded">Most funded</option>
+            <option value="urgent">Most urgent</option>
+          </select>
+          <label class="ngo-toggle" for="ngo-verified-toggle">
+            <input type="checkbox" id="ngo-verified-toggle">
+            <span class="ngo-toggle-track"></span>
+            <span class="ngo-toggle-label">Verified only</span>
+          </label>
+        </div>
+
+        <p class="ngo-feed-count" id="ngo-feed-count" aria-live="polite"></p>
+        <div class="ngo-feed" id="ngo-feed"></div>
+        <p class="ngo-empty" id="ngo-empty" hidden>No NGOs match those filters. Clear a filter and try again.</p>
+      </div>
+    </section>
+</main>
+
+  <!-- ============ MODAL: NGO QUICK PROFILE ============ -->
+  <div class="ngo-modal" id="ngo-profile-modal" hidden>
+    <div class="ngo-modal-backdrop" data-ngo-close></div>
+    <div class="ngo-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="ngo-profile-name">
+      <button class="ngo-modal-close" data-ngo-close aria-label="Close">&times;</button>
+      <div class="ngo-profile-head">
+        <div class="ngo-avatar ngo-avatar-lg" id="ngo-profile-avatar"></div>
+        <div>
+          <h3 class="ngo-profile-name" id="ngo-profile-name"></h3>
+          <span class="ngo-verified" id="ngo-profile-badge"></span>
+        </div>
+      </div>
+      <p class="ngo-profile-desc" id="ngo-profile-desc"></p>
+      <p class="ngo-profile-location" id="ngo-profile-location"></p>
+      <!-- Demo verification statuses: replace with backend data -->
+      <ul class="ngo-status-list" id="ngo-profile-statuses"></ul>
+      <div class="ngo-profile-numbers">
+        <div><strong id="ngo-profile-campaigns"></strong><span>Total campaigns</span></div>
+        <div><strong id="ngo-profile-impacted"></strong><span>People impacted</span></div>
+      </div>
+      <button class="ngo-btn ngo-btn-primary ngo-btn-block" id="ngo-view-full-profile">View Full Profile</button>
+    </div>
+  </div>
+
+  <!-- ============ MODAL: DONATE PLACEHOLDER ============ -->
+  <div class="ngo-modal" id="ngo-donate-modal" hidden>
+    <div class="ngo-modal-backdrop" data-ngo-close></div>
+    <div class="ngo-modal-dialog ngo-modal-small" role="dialog" aria-modal="true" aria-labelledby="ngo-donate-title">
+      <button class="ngo-modal-close" data-ngo-close aria-label="Close">&times;</button>
+      <h3 id="ngo-donate-title">Donate</h3>
+      <p>Donation module connected separately.</p>
+      <button class="ngo-btn ngo-btn-primary" data-ngo-close>Got it</button>
+    </div>
+  </div>
+
+  <!-- ============ MODAL: VOLUNTEER PLACEHOLDER ============ -->
+  <div class="ngo-modal" id="ngo-volunteer-modal" hidden>
+    <div class="ngo-modal-backdrop" data-ngo-close></div>
+    <div class="ngo-modal-dialog ngo-modal-small" role="dialog" aria-modal="true" aria-labelledby="ngo-volunteer-title">
+      <button class="ngo-modal-close" data-ngo-close aria-label="Close">&times;</button>
+      <h3 id="ngo-volunteer-title">Volunteer</h3>
+      <p>Volunteer module connected separately.</p>
+      <button class="ngo-btn ngo-btn-primary" data-ngo-close>Got it</button>
+    </div>
+  </div>
+
+  <div class="ngo-toast" id="ngo-toast" role="status" aria-live="polite" hidden></div>
+</div>
+<script src="shell.js"></script><script src="script.js"></script></body></html>

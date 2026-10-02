@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEXORA | NGO Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="theme.css"><link rel="stylesheet" href="app.css">
+</head>
+<body><div class="ngo-app"><main class="nx-wrap" style="padding-top:32px;padding-bottom:24px">
+<div class="nx-prof-head"><div class="nx-av" id="p-av"></div>
+ <div style="flex:1;min-width:240px"><h1 id="p-name" style="margin:0 0 8px"></h1><span class="nx-badge" id="p-badge"></span>
+ <p id="p-meta" style="margin:10px 0 0;color:#6B6256"></p></div>
+ <div class="nx-cta" style="margin:0"><button class="ngo-btn ngo-btn-outline" id="p-follow">Follow NGO</button><a class="ngo-btn ngo-btn-primary" href="campaign.html">Support Campaign</a></div></div>
+<section class="nx-sec"><h2>About</h2><p id="p-about" style="max-width:720px;line-height:1.65"></p>
+ <div class="nx-two" style="margin-top:18px"><div class="nx-card"><b id="p-camps" style="font-size:28px;color:var(--forest)"></b><p>Total campaigns</p></div><div class="nx-card"><b id="p-people" style="font-size:28px;color:var(--forest)"></b><p>People impacted</p></div></div></section>
+<section class="nx-sec" style="padding-top:0"><h2>Verification &amp; Compliance</h2><div class="nx-two" id="p-ver"></div>
+ <p style="color:#6B6256;font-size:13px">Sample data for demonstration. Statuses are shown exactly as recorded.</p></section>
+<section class="nx-sec" style="padding-top:0"><h2>Active Campaigns</h2><div class="ngo-feed" id="p-camp-list"></div></section>
+<section class="nx-sec" style="padding-top:0"><h2>Impact Updates</h2><div id="p-impact"></div></section>
+</main></div>
+<script src="shell.js"></script><script src="script.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+  var id=new URLSearchParams(location.search).get("id")||"udaan", n=NGO_PROFILES[id]||NGO_PROFILES.udaan; id=NGO_PROFILES[id]?id:"udaan";
+  var $=function(x){return document.getElementById(x)};
+  document.title="NEXORA | "+n.name;
+  $("p-av").textContent=n.initials; $("p-av").style.background=n.color; $("p-name").textContent=n.name;
+  $("p-badge").textContent=n.verified?"✓ Verified":"Verification pending"; if(!n.verified)$("p-badge").className="nx-badge pend";
+  var posts=NGO_POSTS.filter(function(p){return p.ngoId===id});
+  $("p-meta").textContent=n.location+(posts[0]?" • "+posts[0].cause:"");
+  $("p-about").textContent=n.description; $("p-camps").textContent=n.totalCampaigns; $("p-people").textContent=n.peopleImpacted.toLocaleString("en-IN");
+  function card(t,s){var ok=s==="verified";return '<div class="nx-card"><span class="nx-badge'+(ok?'':' pend')+'">'+(ok?'✓ ':'')+(ok?'Verified':'Pending')+'</span><h3>'+t+'</h3></div>'}
+  $("p-ver").innerHTML=card("NGO Darpan ID: "+n.darpan.id,n.darpan.status)+card("12A Registration",n.reg12a.status)+card("80G Eligibility",n.reg80g.status);
+  $("p-camp-list").innerHTML=posts.length?posts.map(function(p){var pc=Math.round(p.raised/p.goal*100);return '<article class="nx-card"><span class="ngo-cause-tag">'+p.cause+'</span><h3>'+p.imageText+'</h3><p>'+p.caption+'</p><div class="ngo-progress" style="margin:14px 0 6px"><div class="ngo-progress-fill" style="width:'+pc+'%"></div></div><small>'+ngoFormatMoney(p.raised)+' raised • '+pc+'% of '+ngoFormatMoney(p.goal)+'</small><div class="nx-cta"><a class="ngo-btn ngo-btn-primary" href="campaign.html">View Campaign</a></div></article>'}).join(""):'<p>No active campaigns right now.</p>';
+  $("p-impact").innerHTML=posts.length?posts.map(function(p){return '<div class="nx-card" style="margin-bottom:14px;border-left:6px solid var(--sage)"><b>'+p.impact+'</b><p>Linked to: '+p.imageText+'. Completion update will appear here once published.</p></div>'}).join(""):'<p>No impact updates published yet.</p>';
+  var k="nexora_followed", f=[];try{f=JSON.parse(localStorage.getItem(k)||"[]")}catch(e){}
+  function paint(){$("p-follow").textContent=f.indexOf(id)>-1?"Following":"Follow NGO"}
+  $("p-follow").onclick=function(){var i=f.indexOf(id);i>-1?f.splice(i,1):f.push(id);try{localStorage.setItem(k,JSON.stringify(f))}catch(e){}paint()};paint();
+});
+</script></body></html>

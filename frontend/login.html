@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in | NEXORA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="auth.css"><link rel="stylesheet" href="portal.css"></head>
+<body class="login-body"><main class="lg">
+<section class="lg-hero"><a class="lg-logo" href="index.html"><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#F7F1E3"/><path d="M9 23V9l14 14V9" fill="none" stroke="#285943" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="9" r="2.4" fill="#C87552"/></svg>NEXORA</a>
+<h2>Every NGO verified. Every rupee traceable.</h2><p>Organisers manage their NGO profile, documents and projects. Admins review and verify each application.</p></section>
+<section class="lg-card">
+<h1>Sign in</h1><p class="auth-sub">Your account type decides which workspace opens. <a href="index.html">Back to homepage</a> · New here? <a href="register.html">Create an account</a></p>
+<form id="lf" novalidate>
+<p class="form-error" id="ferr" role="alert"></p>
+<div class="field" id="f-email"><label for="email">Email</label><input type="email" id="email" autocomplete="email" placeholder="name@organisation.org"><p class="error-text" id="e-email"></p></div>
+<div class="field" id="f-pw"><label for="pw">Password</label><div class="pw-wrap"><input type="password" id="pw" autocomplete="current-password"><button type="button" class="pw-toggle" id="tg" aria-label="Show password" aria-pressed="false">Show</button></div><p class="error-text" id="e-pw"></p></div>
+<div class="lg-row"><span></span><a href="#" id="fp">Forgot password?</a></div>
+<button type="submit" class="btn btn-primary" id="lb">Log in</button></form>
+<div class="demo"><h3>Demo Accounts</h3><p>Seeded by <code>seed.py</code>. No real data.</p>
+<div class="demo-i"><div><b>Admin</b><span>admin@nexora.demo</span><span>Admin@123</span></div><button class="btn btn-outline" data-u="admin@nexora.demo" data-p="Admin@123">Use</button></div>
+<div class="demo-i"><div><b>User</b><span>user.demo@nexora.demo</span><span>User@123</span></div><button class="btn btn-outline" data-u="user.demo@nexora.demo" data-p="User@123">Use</button></div>
+<div class="demo-i"><div><b>Organizer: Active</b><span>rahul@example.com</span><span>Demo@123</span></div><button class="btn btn-outline" data-u="rahul@example.com" data-p="Demo@123">Use</button></div>
+<div class="demo-i"><div><b>Organizer: Pending</b><span>priya@example.com</span><span>Demo@123</span></div><button class="btn btn-outline" data-u="priya@example.com" data-p="Demo@123">Use</button></div>
+<div class="demo-i"><div><b>Organizer: Suspended</b><span>amit@example.com</span><span>Demo@123</span></div><button class="btn btn-outline" data-u="amit@example.com" data-p="Demo@123">Use</button></div>
+<div class="demo-i"><div><b>Organizer: Rejected</b><span>sneha@example.com</span><span>Demo@123</span></div><button class="btn btn-outline" data-u="sneha@example.com" data-p="Demo@123">Use</button></div></div>
+</section></main><div id="toast" class="hidden"></div><script src="api.js"></script><script src="auth.js"></script></body></html>

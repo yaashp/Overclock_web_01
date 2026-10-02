@@ -1,0 +1,72 @@
+/* NEXORA India NGO map. Uses the theme tokens from theme.css */
+.nxmap{display:grid;grid-template-columns:1fr minmax(320px,.8fr);gap:40px;align-items:start}
+.nxmap-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.nxmap-head h2{margin:0!important}
+.nxmap-sub{color:var(--ngo-muted);margin:8px 0 0;max-width:560px;line-height:1.55}
+
+/* left column */
+.nxmap-select-wrap{position:relative;max-width:340px}
+.nxmap-select-wrap label{position:absolute;top:-9px;left:16px;background:var(--cream);padding:0 6px;font-size:12px;color:var(--ngo-muted);font-weight:600}
+.nxmap-select-wrap select{width:100%;appearance:none;-webkit-appearance:none;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%23242923' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 18px center;border:1px solid #D9CDB4;border-radius:999px;padding:14px 44px 14px 20px;font:600 16px 'Manrope',sans-serif;color:var(--char);cursor:pointer}
+.nxmap-select-wrap select:hover{border-color:var(--terra)}
+
+.nxmap-stats{display:grid;grid-template-columns:repeat(3,1fr);margin:34px 0 28px}
+.nxmap-stat{padding:0 18px;border-left:2px dotted #CDBFA4}
+.nxmap-stat:first-child{padding-left:0;border-left:0}
+.nxmap-stat-l{display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ngo-muted);font-weight:700;min-height:2.6em}
+.nxmap-stat-v{display:block;font:700 clamp(32px,4vw,46px)/1.1 'Fraunces',Georgia,serif;color:var(--forest-d);margin-top:6px;font-variant-numeric:tabular-nums}
+
+.nxmap-summary{background:var(--cream-l);border-radius:22px;overflow:hidden;box-shadow:0 6px 24px rgba(118,91,69,.09)}
+.nxmap-summary h3{margin:0;padding:18px 24px;background:var(--beige);font-size:19px;color:var(--forest-d)}
+.nxmap-types{display:grid;grid-template-columns:repeat(3,1fr);padding:18px 8px 22px}
+.nxmap-type{display:flex;flex-direction:column;align-items:center;gap:10px;padding:0 8px;border-left:2px dotted #D9CDB4;text-align:center}
+.nxmap-type:first-child{border-left:0}
+.nxmap-type-name{font-weight:600;font-size:14px;color:var(--char);min-height:2.4em;display:flex;align-items:center}
+.nxmap-pill{display:block;width:100%;max-width:130px;padding:7px 10px;border-radius:999px;background:#fff;box-shadow:0 2px 8px rgba(118,91,69,.14);color:var(--terra);font-weight:800;font-size:15px;font-variant-numeric:tabular-nums}
+.nxmap-note{font-size:12.5px;color:var(--ngo-muted);margin:14px 2px 0}
+.nxmap .nxmap-link{color:var(--forest)!important;display:inline-block;margin-top:18px;font-weight:700;color:var(--forest);text-decoration:none}
+.nxmap-link:hover{text-decoration:underline}
+
+/* right column */
+.nxmap-right{position:relative}
+.nxmap-toggle{display:flex;justify-content:flex-end;margin-bottom:10px}
+.nxmap-toggle-in{display:inline-flex;background:var(--beige);border:1px solid #E1D5BD;border-radius:12px;overflow:hidden}
+.nxmap-toggle button{border:0;background:transparent;padding:10px 18px;font:700 14px 'Manrope',sans-serif;color:var(--char);cursor:pointer}
+.nxmap-toggle button[aria-pressed="true"]{background:var(--forest);color:#FFFDF7}
+.nxmap-stage{position:relative}
+.nxmap-svg{display:block;width:100%;max-height:640px;height:auto}
+.nxmap-state{stroke:#FFFDF7;stroke-width:.7;stroke-linejoin:round;cursor:pointer;transition:fill .15s,filter .15s}
+.nxmap-state:hover,.nxmap-state:focus{filter:brightness(.9) saturate(1.2);outline:none}
+.nxmap-state:focus-visible{stroke:var(--terra);stroke-width:2}
+.nxmap-state.is-selected{fill:var(--terra)!important;stroke:var(--brown);stroke-width:1.4;filter:none}
+.nxmap-legend{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ngo-muted);margin-top:8px;flex-wrap:wrap}
+.nxmap-legend span.sw{width:22px;height:10px;border-radius:3px;display:inline-block}
+.nxmap-reset{margin-left:auto;border:0;background:none;color:var(--forest);font:700 13px 'Manrope',sans-serif;cursor:pointer;padding:4px 8px;border-radius:8px}
+.nxmap-reset:hover{background:var(--beige)}
+
+.nxmap-tip{position:absolute;z-index:3;pointer-events:none;background:#fff;color:var(--char);padding:8px 12px;border-radius:6px;box-shadow:0 4px 16px rgba(36,41,35,.22);font-size:14px;white-space:nowrap}
+.nxmap-tip[hidden]{display:none}
+.nxmap-tip-k{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ngo-muted);margin-bottom:2px}
+.nxmap-tip-k i{width:7px;height:7px;border-radius:50%;background:var(--sage);display:inline-block}
+
+/* table view */
+.nxmap-tablewrap{max-height:560px;overflow:auto;background:var(--cream-l);border-radius:18px;box-shadow:0 6px 24px rgba(118,91,69,.09)}
+.nxmap-table{width:100%;border-collapse:collapse;font-size:14.5px}
+.nxmap-table thead th{position:sticky;top:0;background:var(--beige);text-align:left;padding:12px 14px;font-size:13px;color:var(--forest-d);z-index:1}
+.nxmap-table td,.nxmap-table tbody th{padding:10px 14px;border-top:1px solid #EFE6D5;text-align:left;font-weight:500}
+.nxmap-table td{font-variant-numeric:tabular-nums}
+.nxmap-table tbody tr{cursor:pointer}
+.nxmap-table tbody tr:hover{background:#F7F1E3}
+.nxmap-table tbody tr.is-selected{background:#F3DDD0}
+.nxmap-table tbody tr.is-selected th{font-weight:800}
+
+@media(max-width:900px){
+  .nxmap{grid-template-columns:1fr;gap:28px}
+  .nxmap-svg{max-height:520px}
+}
+@media(max-width:480px){
+  .nxmap-stat{padding:0 10px}
+  .nxmap-stat-l{font-size:11px}
+  .nxmap-types{padding-inline:0}
+}
+@media(prefers-reduced-motion:reduce){.nxmap-state{transition:none}}
